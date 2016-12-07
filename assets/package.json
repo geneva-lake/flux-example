@@ -1,0 +1,31 @@
+{
+"name": "out-of-line",
+"version": "0.0.1",
+"description": "Outline Editor that uses Reactjs and the Flux architecture",
+"main": "app.js",
+"dependencies": {
+"react": "~0.11"
+},
+"devDependencies": {
+"browserify": "~4.2.2",
+"envify": "~2.0.1",
+"jest-cli": "~0.1.17",
+"reactify": "~0.14.0",
+"statics": "~0.1.0",
+"uglify-js": "~2.4.15",
+"watchify": "~0.10.2"
+},
+"scripts": {
+"start": "watchify -o bundle.js -v -d .",
+"build": "NODE_ENV=production browserify . | uglifyjs -cm &gt; bundle.min.js",
+"collect-static": "collect-static . ./static"
+},
+"author": "Nicola Paolucci",
+"license": "Apache 2",
+"browserify": {
+"transform": [
+"reactify",
+"envify"
+]
+}
+}
