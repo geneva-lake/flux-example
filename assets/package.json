@@ -4,7 +4,11 @@
 "description": "Outline Editor that uses Reactjs and the Flux architecture",
 "main": "app.js",
 "dependencies": {
-"react": "~0.11"
+    "classnames": "^2.1.3",
+    "flux": "^2.0.1",
+    "keymirror": "~0.1.0",
+    "object-assign": "^1.0.0",
+    "react": "^0.12.0"
 },
 "devDependencies": {
 "browserify": "~4.2.2",

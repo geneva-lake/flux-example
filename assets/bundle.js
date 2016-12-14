@@ -1,1 +1,1 @@
-console.error("ReactifyError: C:\\Users\\others\\Documents\\GoProjects\\src\\flux-npm\\assets\\component.jsx: Parse Error: Line 17: Unexpected identifier while parsing file: C:\\Users\\others\\Documents\\GoProjects\\src\\flux-npm\\assets\\component.jsx")
+console.error("Error: Cannot find module 'flux' from 'C:\\Users\\others\\Documents\\GoProjects\\src\\flux-npm\\assets'")

@@ -1,10 +1,9 @@
 var AppDispatcher = require('./app-dispatcher');
 var EventEmitter = require('events').EventEmitter;
-var assign = require("react/lib/Object.assign");
 
 var CHANGE_EVENT = 'change';
 
-var base = "api";
+var base = "/api";
 
 var DataStore = assign({}, EventEmitter.prototype, {
 
@@ -21,8 +20,7 @@ var DataStore = assign({}, EventEmitter.prototype, {
 
   getFromServer: function(number) {
 	var url = base + "/" + number;
-    var text = request
-        .get(url).async(false);
+    var text = request.get(url).async(false);
 	currentText = text;
   },
   
@@ -36,9 +34,10 @@ AppDispatcher.register(function(action) {
   switch(action.type) {
     case "RECEIVE_TEXT":
       var number = action.number;
-	  DataStore.get(number)
+	  DataStore.getFromServer(number)
       DataStore.emitChange();
       break;
+	default:
   }
 });
 

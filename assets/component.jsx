@@ -2,19 +2,25 @@ var React = require('react');
 var ButtonActions = require('./action.js');
 var DataStore = require('./store.js');
 
-function getStateFromStores() {
+function getStateFromStores(number) {
   return {
-    text: DataStore.getFromServer(),
+    text: DataStore.getFromServer(number)
   };
-}
+};
+
+function getCurrentStateFromStores() {
+  return {
+    text: DataStore.getCurentText()
+  };
+};
 
 var App = React.createClass({
 
   number : -1,
 
-  getInitialState: function() {
-    return getStateFromStores();
-  },
+  //getInitialState: function(number) {
+ //   return getStateFromStores(number);
+ // },
 
   componentDidMount: function() {
     DataStore.addChangeListener(this._onChange);
@@ -27,11 +33,15 @@ var App = React.createClass({
 		<textarea>{this.state.text}</textarea>
       </div>
     );
-  }
+  },
 
   onClick: function() { 
-	ButtonActions.getText(-1*number);
+	ButtonActions.getText(-1*this.number);
   },
+
+  _onChange: function() {
+    this.setState(getCurrentStateFromStores());
+  }
 
 });
 
