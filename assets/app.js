@@ -1,7 +1,8 @@
-var React = require('react');
-var App = require('./component.react');
+import React from 'react';
+import App from './component.jsx';
 
 React.render(
   <App/>,
   document.getElementById('container')
 );
+

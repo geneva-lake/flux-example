@@ -1,5 +1,5 @@
-var AppDispatcher = require('./app-dispatcher');
-var EventEmitter = require('events').EventEmitter;
+import AppDispatcher from './app-dispatcher';
+import EventEmitter from 'events';
 
 var CHANGE_EVENT = 'change';
 
@@ -41,4 +41,4 @@ AppDispatcher.register(function(action) {
   }
 });
 
-module.exports = DataStore;
+export default DataStore;
