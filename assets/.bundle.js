@@ -16,4 +16,4 @@ module.exports = ButtonActions;
 var Dispatcher = require('flux').Dispatcher;
 
 module.exports = new Dispatcher();
-},{"flux":8}]
+},{"flux":10}]
