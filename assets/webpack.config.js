@@ -11,9 +11,13 @@ module.exports = {
         publicPath: "assets/",
         filename: "bundle.js"
     },
+    debug: true,
+    devtool: "#eval-source-map",
     module: {
    	loaders: [
   	    {
+          test: /\.jsx?$/,
+          exclude: /(node_modules|bower_components)/,
    	         loader: "babel-loader"
     	    }
     	]

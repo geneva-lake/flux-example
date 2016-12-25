@@ -5,30 +5,35 @@ var CHANGE_EVENT = 'change';
 
 var base = "/api";
 
-var DataStore = assign({}, EventEmitter.prototype, {
+class DataStoreClass extends EventEmitter {
 
+  constructor() {
+          super();
 
-  emitChange: function() {
+          this.currentText = "";
+      }
+
+  emitChange() {
     this.emit(CHANGE_EVENT);
-  },
+  }
 
-  addChangeListener: function(callback) {
+  addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
-  },
+  }
 
-  currentText: "",
 
-  getFromServer: function(number) {
+  getFromServer(number) {
 	var url = base + "/" + number;
     var text = request.get(url).async(false);
 	currentText = text;
-  },
-  
-  getCurentText: function() {
+  }
+
+  getCurentText() {
 	return this.currentText;
 }
-});
+};
 
+var DataStore = new DataStoreClass();
 
 AppDispatcher.register(function(action) {
   switch(action.type) {
