@@ -1,4 +1,4 @@
-var AppDispatcher = require('./app-dispatcher');
+import AppDispatcher from './app-dispatcher';
 
 var ButtonActions = {
 
@@ -10,4 +10,4 @@ var ButtonActions = {
   }
 }
 
-module.exports = ButtonActions;
+export default ButtonActions;
