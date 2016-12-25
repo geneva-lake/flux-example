@@ -1,8 +1,7 @@
 var React = require('react');
-var App = require('./component.jsx');
+var App = require('./component.react');
 
 React.render(
   <App/>,
   document.getElementById('container')
 );
-

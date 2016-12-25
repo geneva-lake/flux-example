@@ -1,5 +1,6 @@
-var React = require('react');
+
 var ButtonActions = require('./action.js');
+var React = require('react');
 var DataStore = require('./store.js');
 
 function getStateFromStores(number) {
@@ -35,7 +36,7 @@ var App = React.createClass({
     );
   },
 
-  onClick: function() { 
+  onClick: function() {
 	ButtonActions.getText(-1*this.number);
   },
 
