@@ -14,33 +14,40 @@ function getCurrentStateFromStores() {
   };
 };
 
-var App = React.createClass({
+class App extends React.Component{
 
-  number : -1,
+  constructor(props) {
+          super(props);
+            this.number = -1;
+          this.state = this.getInitialState()
+      }
 
 
+  getInitialState() {
+      return getCurrentStateFromStores();
+    }
 
-  componentDidMount: function() {
+  componentDidMount() {
     DataStore.addChangeListener(this._onChange);
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="outlineapp">
-        <button click="this.onClick">button</button>
-		<textarea>{this.state.text}</textarea>
+        <button>button</button>
+		<textarea>text</textarea>
       </div>
     );
-  },
+  }
 
-  onClick: function() { 
+  onClick() {
 	ButtonActions.getText(-1*this.number);
-  },
+  }
 
-  _onChange: function() {
+  _onChange() {
     this.setState(getCurrentStateFromStores());
   }
 
-});
-
+}
+//var App = new AppClass();
 export default App;
