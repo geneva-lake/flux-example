@@ -1,44 +1,50 @@
-var AppDispatcher = require('./app-dispatcher');
-var EventEmitter = require('events').EventEmitter;
+import AppDispatcher from './app-dispatcher';
+import EventEmitter from 'events';
 
 var CHANGE_EVENT = 'change';
 
 var base = "/api";
 
-var DataStore = assign({}, EventEmitter.prototype, {
+class DataStoreClass extends EventEmitter {
 
+	constructor() {
+		super();
+		this.currentText = "111";
+	}
 
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
+	emitChange() {
+		this.emit(CHANGE_EVENT);
+	}
 
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
+	addChangeListener(callback) {
+		this.on(CHANGE_EVENT, callback);
+	}
 
-  currentText: "",
+	getCurrentText() {
+		return this.currentText;
+	}
+	setCurrentText(number) {
+		console.log('The button was clicked number. ', number);
+		if (number > 0) {
+			this.currentText = "aaa";
+		} else {
+			this.currentText = "111";
+		}
+	}
+};
 
-  getFromServer: function(number) {
-	var url = base + "/" + number;
-    var text = request.get(url).async(false);
-	currentText = text;
-  },
-  
-  getCurentText: function() {
-	return this.currentText;
-}
-});
+var DataStore = new DataStoreClass();
 
-
-AppDispatcher.register(function(action) {
-  switch(action.type) {
-    case "RECEIVE_TEXT":
-      var number = action.number;
-	  DataStore.getFromServer(number)
-      DataStore.emitChange();
-      break;
+AppDispatcher.register(function (action) {
+	switch (action.type) {
+	case "RECEIVE_TEXT":
+		console.log('The button was clicked store.');
+		var number = action.number;
+		DataStore.setCurrentText(number);
+		DataStore.emitChange();
+		break;
 	default:
-  }
+	}
 });
 
-module.exports = DataStore;
+export default DataStore;
