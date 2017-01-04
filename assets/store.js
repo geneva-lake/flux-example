@@ -7,43 +7,44 @@ var base = "/api";
 
 class DataStoreClass extends EventEmitter {
 
-  constructor() {
-          super();
+	constructor() {
+		super();
+		this.currentText = "111";
+	}
 
-          this.currentText = "";
-      }
+	emitChange() {
+		this.emit(CHANGE_EVENT);
+	}
 
-  emitChange() {
-    this.emit(CHANGE_EVENT);
-  }
+	addChangeListener(callback) {
+		this.on(CHANGE_EVENT, callback);
+	}
 
-  addChangeListener(callback) {
-    this.on(CHANGE_EVENT, callback);
-  }
-
-
-  getFromServer(number) {
-	var url = base + "/" + number;
-    var text = request.get(url).async(false);
-	currentText = text;
-  }
-
-  getCurentText() {
-	return this.currentText;
-}
+	getCurrentText() {
+		return this.currentText;
+	}
+	setCurrentText(number) {
+		console.log('The button was clicked number. ', number);
+		if (number > 0) {
+			this.currentText = "aaa";
+		} else {
+			this.currentText = "111";
+		}
+	}
 };
 
 var DataStore = new DataStoreClass();
 
-AppDispatcher.register(function(action) {
-  switch(action.type) {
-    case "RECEIVE_TEXT":
-      var number = action.number;
-	  DataStore.getFromServer(number)
-      DataStore.emitChange();
-      break;
+AppDispatcher.register(function (action) {
+	switch (action.type) {
+	case "RECEIVE_TEXT":
+		console.log('The button was clicked store.');
+		var number = action.number;
+		DataStore.setCurrentText(number);
+		DataStore.emitChange();
+		break;
 	default:
-  }
+	}
 });
 
 export default DataStore;

@@ -3,51 +3,57 @@ import ButtonActions from './action.js';
 import DataStore from './store.js';
 
 function getStateFromStores(number) {
-  return {
-    text: DataStore.getFromServer(number)
-  };
+	return {
+		text : DataStore.getFromServer(number)
+	};
 };
 
 function getCurrentStateFromStores() {
-  return {
-    text: DataStore.getCurentText()
-  };
+	return {
+		text : DataStore.getCurentText()
+	};
 };
 
-class App extends React.Component{
+class App extends React.Component {
 
-  constructor(props) {
-          super(props);
-            this.number = -1;
-          this.state = this.getInitialState()
-      }
+	constructor(props) {
+		super(props);
+		this.onChange = this.onChange.bind(this)
+		this.state = {
+			text : DataStore.getCurrentText(),
+			number : 1
+		};
+		this.onClick = this.onClick.bind(this)
+	}
 
+	componentDidMount() {
+		DataStore.addChangeListener(this.onChange);
+	}
 
-  getInitialState() {
-      return getCurrentStateFromStores();
-    }
+	render() {
+		return (
+			 <div>
+				 <button onClick = {this.onClick}>button</button>
+			   <div>{this.state.text}</div>
+			 </div> );
+	}
 
-  componentDidMount() {
-    DataStore.addChangeListener(this._onChange);
-  }
+	onClick() {
+		console.log('The button was clicked.');
+		this.setState({
+			number : this.state.number * -1
+		});
+		ButtonActions.getText(this.state.number);
+	}
 
-  render() {
-    return (
-      <div className="outlineapp">
-        <button>button</button>
-		<textarea>text</textarea>
-      </div>
-    );
-  }
-
-  onClick() {
-	ButtonActions.getText(-1*this.number);
-  }
-
-  _onChange() {
-    this.setState(getCurrentStateFromStores());
-  }
+	onChange() {
+		console.log('The button was clicked component.');
+		this.setState({
+			text : DataStore.getCurrentText()
+		});
+		console.log(this.state.text);
+	}
 
 }
-//var App = new AppClass();
+
 export default App;
