@@ -1,7 +1,7 @@
 {
-  "name": "out-of-line",
+  "name": "simple-flux",
   "version": "0.0.1",
-  "description": "Outline Editor that uses Reactjs and the Flux architecture",
+  "description": "Simple flux example",
   "main": "app.js",
   "dependencies": {
     "classnames": "^2.1.3",
@@ -29,7 +29,7 @@
     "build": "NODE_ENV=production browserify . | uglifyjs -cm &gt; bundle.min.js",
     "collect-static": "collect-static . ./static"
   },
-  "author": "Nicola Paolucci",
+  "author": "geneva lake",
   "license": "Apache 2",
   "browserify": {
     "transform": [
