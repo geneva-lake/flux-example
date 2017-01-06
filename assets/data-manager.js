@@ -3,7 +3,7 @@ import Request from 'superagent';
 
 var apiUrl = "/api/";
 
-const DataManagher = {
+const DataManager = {
   get(number) {
     Request.get(apiUrl + number)
       .end(function(err, response) {
@@ -15,4 +15,4 @@ const DataManagher = {
   }
 }
 
-export default DataManagher;
+export default DataManager;
