@@ -13,6 +13,9 @@ module.exports = {
     },
     debug: true,
     devtool: "#eval-source-map",
+    plugins: [
+      new webpack.DefinePlugin({ "global.GENTLY": false })
+    ],
     module: {
    	loaders: [
   	    {
@@ -21,5 +24,8 @@ module.exports = {
    	         loader: "babel-loader"
     	  }
     	]
-    }
+    },
+    node: {
+    __dirname: true,
+   }
 };

@@ -2,17 +2,7 @@ import React from 'react';
 import ButtonActions from './action.js';
 import DataStore from './store.js';
 
-function getStateFromStores(number) {
-	return {
-		text : DataStore.getFromServer(number)
-	};
-};
 
-function getCurrentStateFromStores() {
-	return {
-		text : DataStore.getCurentText()
-	};
-};
 
 class App extends React.Component {
 
@@ -21,7 +11,7 @@ class App extends React.Component {
 		this.onChange = this.onChange.bind(this)
 		this.state = {
 			text : DataStore.getCurrentText(),
-			number : 1
+			number : -1
 		};
 		this.onClick = this.onClick.bind(this)
 	}
@@ -43,7 +33,7 @@ class App extends React.Component {
 		this.setState({
 			number : this.state.number * -1
 		});
-		ButtonActions.getText(this.state.number);
+		ButtonActions.getTextFromServer(this.state.number);
 	}
 
 	onChange() {

@@ -1,15 +1,17 @@
 import AppDispatcher from './app-dispatcher';
+import Action from './action'
 import EventEmitter from 'events';
+import Request from 'superagent';
+import DataManager from './data-manager';
+
 
 var CHANGE_EVENT = 'change';
-
-var base = "/api";
 
 class DataStoreClass extends EventEmitter {
 
 	constructor() {
 		super();
-		this.currentText = "111";
+		this.currentText = "one";
 	}
 
 	emitChange() {
@@ -23,14 +25,13 @@ class DataStoreClass extends EventEmitter {
 	getCurrentText() {
 		return this.currentText;
 	}
-	setCurrentText(number) {
-		console.log('The button was clicked number. ', number);
-		if (number > 0) {
-			this.currentText = "aaa";
-		} else {
-			this.currentText = "111";
-		}
+	setCurrentText(text) {
+		this.currentText =text;
 	}
+
+  getTextFromServer(number) {
+    DataManager.get(number);
+  }
 };
 
 var DataStore = new DataStoreClass();
@@ -38,11 +39,15 @@ var DataStore = new DataStoreClass();
 AppDispatcher.register(function (action) {
 	switch (action.type) {
 	case "RECEIVE_TEXT":
-		console.log('The button was clicked store.');
-		var number = action.number;
-		DataStore.setCurrentText(number);
+		console.log('Text received');
+    DataStore.setCurrentText(action.text);
 		DataStore.emitChange();
 		break;
+  case "GET_TEXT":
+      console.log('The button was clicked store.');
+      var number = action.number;
+      DataStore.getTextFromServer(number);
+      break;
 	default:
 	}
 });
