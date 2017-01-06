@@ -7,12 +7,6 @@ var ButtonActions = {
       type:  "GET_TEXT",
       number: number
     });
-  },
-  ReceiveTextFromServer: function(number) {
-    AppDispatcher.dispatch({
-      type:  "RECEIVE_TEXT",
-      number: number
-    });
   }
 }
 
