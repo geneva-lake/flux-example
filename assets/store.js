@@ -1,7 +1,6 @@
 import AppDispatcher from './app-dispatcher';
 import Action from './action'
 import EventEmitter from 'events';
-import Request from 'superagent';
 import DataManager from './data-manager';
 
 
