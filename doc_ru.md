@@ -1,17 +1,14 @@
 В приложении, построенном по архитектуре флюкс(Flux) встречаются следующие основные компоненты: представление(view), действие(action), хранилище(store) и диспетчер(dispatcher). Суть их взаимодействия проста - действие эмитирует событие в диспетчер, он, в свою очередь, доставляет событие к хранилищам. Хранилища регистрируются в диспетчере на получение определенных событий. В приведенном примере показано, как ButtonAction эмитирует событие в диспетчер:
 
-<code>
 getTextFromServer: function(number) {<br>
     AppDispatcher.dispatch({<br>
       type:  "GET_TEXT",<br>
       number: number<br>
     });<br>
 }<br>
-</code>
 
 У события есть тип и параметр. В то же время хранилище DataStore регистрируется для получения событий:
 
-<code>
 AppDispatcher.register(function (action) {<br>
 	switch (action.type) {<br>
 	case "RECEIVE_TEXT":<br>
