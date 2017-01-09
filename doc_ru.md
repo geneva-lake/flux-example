@@ -30,7 +30,7 @@ AppDispatcher.register(function (action) {<br>
 
 DataStore.addChangeListener(this.onChange);<br>
 <br>
-...
+...<br>
 <br>
 onChange() {<br>
 		console.log('The button was clicked component.');<br>
