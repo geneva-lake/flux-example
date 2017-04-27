@@ -6,4 +6,4 @@ Simplicity of project allows to understand the basic structural components of fl
 Install nodejs.<br>
 From terminal in assets folder run 'npm install'<br>
 Then 'webpack'<br>
-'go run' from project folder.
+'go run main.go' from project folder.
