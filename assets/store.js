@@ -3,7 +3,6 @@ import Action from './action'
 import EventEmitter from 'events';
 import DataManager from './data-manager';
 
-
 var CHANGE_EVENT = 'change';
 
 class DataStoreClass extends EventEmitter {
